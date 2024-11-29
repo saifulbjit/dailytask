@@ -1,0 +1,9 @@
+<div class="d-flex gap-2 align-items-center justify-content-center">
+    {% if request.user.is_authenticated %}
+        <div class="text-secondary">Welcome, {{request.user.username|title}}</div>
+        <a class="btn btn-outline-danger" href="{% url 'accounts:logout' %}">Logout</a>
+    {% else %}
+        <a class="btn btn-primary" href="{% url 'accounts:login' %}">Login</a>
+        <a class="btn btn-outline-primary" href="{% url 'accounts:register' %}">Register</a>
+    {% endif %}
+</div>

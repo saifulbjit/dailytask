@@ -1,0 +1,31 @@
+{% include "base.html" %}
+
+{% block content %}
+<div class="jumbotron jumbotron-fluid bg-primary text-white text-center py-5">
+  <div class="container">
+      <h1 class="display-4">Kickstart your career at BJIT</h1>
+      <p class="lead">
+          BJIT places great emphasis on attracting and developing the best available talent. 
+          Our people are not only our greatest asset but also our biggest competitive advantage.
+      </p>
+  </div>
+</div>
+<div class="container ">
+    <div class="row my-4">
+      <div class="col-md-8 col-12">
+        <!-- First column with 8 units on medium screens and full width on smaller screens -->
+        <h4 class="text-info">Current Job Opennings ({{ opennings.count }}) </h4>
+        {% for job in opennings %}
+        {% include "jobs/components/job_card.html" with job=job %}
+        {% endfor %}
+        {% if request.user.is_staff %}
+        <a href="{% url 'jobs:add_job' %}" class="btn btn-primary">Add New Job Openning</a>
+        {% endif %}
+      </div>
+      <div class="col-md-4 col-12">
+        <!-- Second column with 4 units on medium screens and full width on smaller screens -->
+        {% include "jobs/components/side_panel.html" with categories=categories %}
+      </div>
+    </div>
+</div>  
+{% endblock content %}

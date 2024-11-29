@@ -1,0 +1,64 @@
+{% include "accounts/base.html" %}
+{% block head %}
+<style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f8f9fa;
+      margin: 0;
+    }
+    .login-form {
+      max-width: 360px;
+      width: 100%;
+      padding: 20px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .login-form .form-control:focus {
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+      border-color: rgba(0, 123, 255, 0.5);
+    }
+    .login-form .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .login-form .logo img {
+      max-width: 50px;
+    }
+  </style>
+{% endblock head %}
+{% block content %}
+<div class="login-form">
+    <h2 class="text-center mb-4">BJIT Jobs</h2>
+    <form method="POST" action="{% url 'accounts:login' %}">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input
+          type="text"
+          class="form-control"
+          id="username"
+          name="username"
+          placeholder="Username"
+          required
+        >
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          placeholder="Password"
+          name="password"
+          required
+        >
+      </div>
+      <button type="submit" class="btn btn-primary w-100 mt-3">Sign in</button>
+    </form>
+</div>
+{% endblock content %}
